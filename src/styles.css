@@ -1,1 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
+.dark-mode {
+    background: #121212;
+    color: white;
+    min-height: 100vh;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e;
+    color: white;
+    border: 1px solid #333;
+}
+
+.dark-mode .btn-outline-primary,
+.dark-mode .btn-outline-success,
+.dark-mode .btn-outline-danger {
+    color: white;
+    border-color: #666;
+}
+
+.dark-mode .btn-outline-primary:hover,
+.dark-mode .btn-outline-success:hover,
+.dark-mode .btn-outline-danger:hover {
+    background: #333;
+}
+
+
+.dark-mode .badge {
+    opacity: 0.9;
+}
