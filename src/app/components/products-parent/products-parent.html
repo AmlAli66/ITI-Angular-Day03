@@ -1,0 +1,34 @@
+<div class="container text-center my-4">
+
+    <h2>Products</h2>
+
+    <div class="mb-3">
+
+        <div class="  d-flex justify-content-center align-items-center gap-3">
+
+            @for(cat of categories; track cat){
+
+            <app-button [title]="cat | titlecase" [color]="selectedCategory==cat ? 'btn-dark':'btn-outline-dark'"
+                (btnClick)="filter(cat)">
+            </app-button>
+
+            }
+
+        </div>
+    </div>
+
+    <h4 class="my-3">
+        Total Price: {{totalPrice.toFixed(2)}}
+    </h4>
+
+
+    <app-products (dataLoaded)="receiveData($event)">
+
+        <h3 #titleRef class="text-primary text-center my-3">
+            Available Products
+        </h3>
+
+    </app-products>
+
+
+</div>

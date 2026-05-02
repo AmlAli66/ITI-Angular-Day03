@@ -1,14 +1,15 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductsService } from '../../services/products';
 import { ShortDescPipe } from '../../pipes/short-desc-pipe';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Zoom } from '../../directives/zoom';
 import { DarkMode } from '../../directives/dark-mode';
+import { Button } from '../../shared/button/button';
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, ShortDescPipe, Zoom, DarkMode, TitleCasePipe],
+  imports: [CommonModule, ShortDescPipe, Zoom, DarkMode, TitleCasePipe, Button],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
@@ -21,6 +22,9 @@ export class Products {
   totalPrice: number = 0;
 
   selectedCategory: string = 'all';
+
+  @Output() dataLoaded = new EventEmitter<any>();
+
 
   constructor(private productService: ProductsService, private cdr: ChangeDetectorRef) { }
 
@@ -36,6 +40,11 @@ export class Products {
 
 
       this.calculateTotal();
+
+      this.dataLoaded.emit({
+        categories: this.categories,
+        totalPrice: this.totalPrice
+      });
 
       this.cdr.detectChanges();
     });

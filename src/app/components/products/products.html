@@ -1,6 +1,6 @@
 <div class="container my-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <!-- <div class="d-flex justify-content-between align-items-center mb-4">
 
         <h2>Products</h2>
 
@@ -12,25 +12,26 @@
 
     <div class="mb-3">
 
-        @for(cat of categories; track cat){
+        <div class="d-flex justify-content-between align-items-center">
 
-        <button class="btn me-2 mb-2" [ngClass]="
-        selectedCategory == cat
-        ? 'btn-dark'
-        : 'btn-outline-dark'
-        " (click)="filterCategory(cat)">
+            @for(cat of categories; track cat){
 
-            {{cat |titlecase}}
 
-        </button>
+            <app-button [title]="cat | titlecase" [color]="selectedCategory == cat ? 'btn-dark' : 'btn-outline-dark'"
+                (btnClick)="filterCategory(cat)">
+            </app-button>
 
-        }
+            }
+        </div>
+
 
     </div>
 
     <h4 class="mb-4">
         Total Price: {{totalPrice | number:'1.2-2'}}
-    </h4>
+    </h4> -->
+
+    <ng-content></ng-content>
 
     <div class="row g-4">
 
@@ -78,8 +79,15 @@
 
 
                     </div>
-                    <input type="button" class="btn btn-outline-primary w-100 mt-2" value="Add to Cart"
-                        (click)="addToCart(item)" [disabled]="item.stock == 0">
+
+                    @if (item.stock!==0) {
+                    <app-button title="Add To Cart" color="btn-outline-primary mt-2" (btnClick)="addToCart(item)">
+                    </app-button>
+                    }
+                    @else {
+                    <app-button title="None available" color="btn-secondary mt-2">
+                    </app-button>
+                    }
 
                 </div>
 
