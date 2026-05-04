@@ -1,0 +1,61 @@
+<div class="container my-5 d-flex justify-content-center">
+
+    <div class="card shadow-lg p-4 w-75 border-0 rounded-4">
+
+        <h3 class="text-center mb-4 text-dark fw-bold">
+            Add New Product
+        </h3>
+
+        <form #f="ngForm" (ngSubmit)="submit()">
+
+            <div class="row g-3">
+
+                <div class="col-md-6">
+                    <input class="form-control form-control-lg" placeholder="Title" name="title"
+                        [(ngModel)]="product.title" required />
+                </div>
+
+                <div class="col-md-6">
+                    <input class="form-control form-control-lg" placeholder="Category" name="category"
+                        [(ngModel)]="product.category" />
+                </div>
+
+                <div class="col-12">
+                    <textarea class="form-control form-control-lg" rows="3" placeholder="Description" name="description"
+                        [(ngModel)]="product.description">
+          </textarea>
+                </div>
+
+                <div class="col-md-4">
+                    <Label>Price</Label>
+                    <input class="form-control form-control-lg" type="number" placeholder="Price" name="price"
+                        [(ngModel)]="product.price" />
+                </div>
+
+                <div class="col-md-4">
+                    <Label>Image URL</Label>
+                    <input class="form-control form-control-lg" placeholder="Image URL" name="thumbnail"
+                        [(ngModel)]="product.thumbnail" />
+                </div>
+
+                <div class="col-md-4">
+                    <Label>Stock</Label>
+                    <input class="form-control form-control-lg" type="number" placeholder="Stock" name="stock"
+                        [(ngModel)]="product.stock" />
+                </div>
+
+                <div class="col-12 mt-3">
+
+                    <button class="btn btn-success w-100 py-2 fw-bold rounded-3">
+                        Save Product
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

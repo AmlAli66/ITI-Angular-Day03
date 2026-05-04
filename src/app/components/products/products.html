@@ -1,35 +1,6 @@
 <div class="container my-4">
 
-    <!-- <div class="d-flex justify-content-between align-items-center mb-4">
 
-        <h2>Products</h2>
-
-        <button class="btn btn-dark" appDarkMode>
-            <i class="fa-solid fa-moon"></i>
-        </button>
-
-    </div>
-
-    <div class="mb-3">
-
-        <div class="d-flex justify-content-between align-items-center">
-
-            @for(cat of categories; track cat){
-
-
-            <app-button [title]="cat | titlecase" [color]="selectedCategory == cat ? 'btn-dark' : 'btn-outline-dark'"
-                (btnClick)="filterCategory(cat)">
-            </app-button>
-
-            }
-        </div>
-
-
-    </div>
-
-    <h4 class="mb-4">
-        Total Price: {{totalPrice | number:'1.2-2'}}
-    </h4> -->
 
     <ng-content></ng-content>
 
@@ -88,6 +59,9 @@
                     <app-button title="None available" color="btn-secondary mt-2">
                     </app-button>
                     }
+
+                    <app-button title="Delete" color="btn-danger mt-2" (btnClick)="deleteItem(item.id)">
+                    </app-button>
 
                 </div>
 

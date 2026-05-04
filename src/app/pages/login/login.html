@@ -1,0 +1,21 @@
+<div class="card p-4 shadow">
+
+    <h2 class="mb-3">Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+
+        <input class="form-control mb-3" placeholder="Email" formControlName="email">
+
+        <input type="password" class="form-control mb-3" placeholder="Password" formControlName="password">
+
+        <button class="btn btn-dark w-100">
+            Login
+        </button>
+
+    </form>
+
+    <a routerLink="/register" class="mt-3 d-block">
+        Create Account
+    </a>
+
+</div>

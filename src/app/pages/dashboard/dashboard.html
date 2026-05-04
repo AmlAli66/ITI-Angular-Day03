@@ -1,0 +1,70 @@
+<div class="container my-4">
+
+    <h2>Users Dashboard</h2>
+
+
+    <table class="table table-bordered mt-3 table-striped table-responsive table-dark">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for(user of users ??[]; track user.id){
+
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.firstName}}</td>
+                <td>{{user.email}}</td>
+
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="delete(user.id!)">
+                        Delete
+                    </button>
+                    <button class="btn btn-info btn-sm ms-2" (click)="getUser(user.id!)" data-bs-toggle="modal"
+                        data-bs-target="#userModal">
+                        View
+                    </button>
+
+                </td>
+            </tr>
+
+            }
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<div class="modal fade" id="userModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">User Details</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                @if (selectedUser) {
+                <p><strong>Name:</strong> {{selectedUser.firstName}}</p>
+                <p><strong>Email:</strong> {{selectedUser.email}}</p>
+                <p><strong>ID:</strong> {{selectedUser.id}}</p>
+                <p><strong>Role:</strong> {{selectedUser.role}}</p>
+                }
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

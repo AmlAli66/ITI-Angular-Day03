@@ -3,15 +3,17 @@ import { Products } from '../products/products';
 import { Button } from "../../shared/button/button";
 import { TitleCasePipe } from '@angular/common';
 import { DarkMode } from '../../directives/dark-mode';
+import { Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-products-parent',
-  imports: [Button, TitleCasePipe, Products, DarkMode],
+  imports: [Button, TitleCasePipe, Products, DarkMode, RouterLink],
   templateUrl: './products-parent.html',
   styleUrl: './products-parent.css',
 })
 export class ProductsParent {
 
+  constructor(private router: Router) { }
   @ViewChild(Products) productsComponent!: Products;
 
   categories: string[] = [];
@@ -32,5 +34,7 @@ export class ProductsParent {
     this.totalPrice = data.totalPrice;
   }
 
-
+  goToAdd() {
+    this.router.navigate(['/add-product']);
+  }
 }

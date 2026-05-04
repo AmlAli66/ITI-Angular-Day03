@@ -24,9 +24,18 @@
 
     <app-products (dataLoaded)="receiveData($event)">
 
-        <h3 #titleRef class="text-primary text-center my-3">
-            Available Products
-        </h3>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3 #titleRef class="text-primary text-center my-3">
+                Available Products
+            </h3>
+
+
+            <app-button title="Add Product" color="btn-success" (btnClick)="goToAdd()">
+            </app-button>
+
+
+        </div>
+
 
     </app-products>
 

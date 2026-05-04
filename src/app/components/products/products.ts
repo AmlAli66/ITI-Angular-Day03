@@ -4,12 +4,11 @@ import { ProductsService } from '../../services/products';
 import { ShortDescPipe } from '../../pipes/short-desc-pipe';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Zoom } from '../../directives/zoom';
-import { DarkMode } from '../../directives/dark-mode';
 import { Button } from '../../shared/button/button';
 
 @Component({
   selector: 'app-products',
-  imports: [CommonModule, ShortDescPipe, Zoom, DarkMode, TitleCasePipe, Button],
+  imports: [CommonModule, ShortDescPipe, Zoom, Button],
   templateUrl: './products.html',
   styleUrl: './products.css',
 })
@@ -30,7 +29,7 @@ export class Products {
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(res => {
-      this.products = res.products;
+      this.products = res as any;
       this.filteredProducts = this.products;
 
       this.categories = [
@@ -79,4 +78,13 @@ export class Products {
     }
 
   }
+
+  deleteItem(id: number) {
+    this.productService.deleteProduct(id).subscribe(() => {
+      this.products = this.products.filter(p => p.id !== id);
+      this.filterCategory(this.selectedCategory);
+      alert('Deleted Successfully');
+    });
+  }
+
 }
