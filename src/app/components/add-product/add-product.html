@@ -2,10 +2,11 @@
 
     <div class="card shadow-lg p-4 w-75 border-0 rounded-4">
 
-        <h3 class="text-center mb-4 text-dark fw-bold">
-            Add New Product
+        <h3 class="text-center mb-4 fw-bold">
+            {{ isEditMode ? 'Edit Product' : 'Add New Product' }}
         </h3>
 
+        @if(product){
         <form #f="ngForm" (ngSubmit)="submit()">
 
             <div class="row g-3">
@@ -23,7 +24,7 @@
                 <div class="col-12">
                     <textarea class="form-control form-control-lg" rows="3" placeholder="Description" name="description"
                         [(ngModel)]="product.description">
-          </textarea>
+              </textarea>
                 </div>
 
                 <div class="col-md-4">
@@ -55,6 +56,9 @@
             </div>
 
         </form>
+
+        }
+
 
     </div>
 

@@ -51,4 +51,11 @@ export class Auth {
     return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
 
+
+  isAdmin(): boolean {
+    const user = this.getCurrentUser();
+    return !!user && user.role === 'admin';
+  }
+
+
 }

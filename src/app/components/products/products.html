@@ -1,7 +1,4 @@
 <div class="container my-4">
-
-
-
     <ng-content></ng-content>
 
     <div class="row g-4">
@@ -48,8 +45,9 @@
 
                         </div>
 
-
                     </div>
+
+
 
                     @if (item.stock!==0) {
                     <app-button title="Add To Cart" color="btn-outline-primary mt-2" (btnClick)="addToCart(item)">
@@ -60,8 +58,14 @@
                     </app-button>
                     }
 
-                    <app-button title="Delete" color="btn-danger mt-2" (btnClick)="deleteItem(item.id)">
+                    <app-button title="Delete" color="btn-danger mt-2" (btnClick)="deleteItem(item.id!)">
                     </app-button>
+
+
+                    <app-button title="Edit" color="btn-warning mt-2" (btnClick)="editItem(item.id!)">
+                    </app-button>
+
+
 
                 </div>
 

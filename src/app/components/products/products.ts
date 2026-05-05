@@ -5,6 +5,8 @@ import { ShortDescPipe } from '../../pipes/short-desc-pipe';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { Zoom } from '../../directives/zoom';
 import { Button } from '../../shared/button/button';
+import { Auth } from '../../services/auth/services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -25,7 +27,7 @@ export class Products {
   @Output() dataLoaded = new EventEmitter<any>();
 
 
-  constructor(private productService: ProductsService, private cdr: ChangeDetectorRef) { }
+  constructor(private productService: ProductsService, private cdr: ChangeDetectorRef, private auth: Auth, private router: Router) { }
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(res => {
@@ -80,11 +82,23 @@ export class Products {
   }
 
   deleteItem(id: number) {
-    this.productService.deleteProduct(id).subscribe(() => {
-      this.products = this.products.filter(p => p.id !== id);
-      this.filterCategory(this.selectedCategory);
-      alert('Deleted Successfully');
-    });
+    if (this.auth.isAdmin()) {
+      this.productService.deleteProduct(id).subscribe(() => {
+        this.products = this.products.filter(p => p.id !== id);
+        this.filterCategory(this.selectedCategory);
+        alert('Deleted Successfully');
+      });
+    } else {
+      alert('Only Admin Can Delete Products!');
+    }
+  }
+
+  editItem(id: number) {
+    if (this.auth.isAdmin()) {
+      this.router.navigate(['/edit-product', id]);
+    } else {
+      alert('Only Admin Can Edit Products!');
+    }
   }
 
 }

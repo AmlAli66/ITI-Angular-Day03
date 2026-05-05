@@ -4,16 +4,17 @@ import { Button } from "../../shared/button/button";
 import { TitleCasePipe } from '@angular/common';
 import { DarkMode } from '../../directives/dark-mode';
 import { Router, RouterLink } from "@angular/router";
+import { Auth } from '../../services/auth/services/auth';
 
 @Component({
   selector: 'app-products-parent',
-  imports: [Button, TitleCasePipe, Products, DarkMode, RouterLink],
+  imports: [Button, TitleCasePipe, Products],
   templateUrl: './products-parent.html',
   styleUrl: './products-parent.css',
 })
 export class ProductsParent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: Auth) { }
   @ViewChild(Products) productsComponent!: Products;
 
   categories: string[] = [];
@@ -35,6 +36,10 @@ export class ProductsParent {
   }
 
   goToAdd() {
-    this.router.navigate(['/add-product']);
+    if (this.auth.isAdmin()) {
+      this.router.navigate(['/add-product']);
+    } else {
+      alert('Access Denied! Admins Only.');
+    }
   }
 }

@@ -7,6 +7,7 @@ import { authGuard } from './guards/auth-guard';
 import { Home } from './pages/home/home';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { AddProduct } from './components/add-product/add-product';
+import { dashboardGuard } from './guards/dashboard-guard';
 
 export const routes: Routes = [
 
@@ -24,12 +25,14 @@ export const routes: Routes = [
         path: '',
         component: MainLayout,
         canActivate: [authGuard],
+        canActivateChild: [authGuard],
         children: [
             {
                 path: 'home', component: Home
             },
             { path: 'add-product', component: AddProduct },
-            { path: 'dashboard', component: Dashboard },
+            { path: 'edit-product/:id', component: AddProduct },
+            { path: 'dashboard', component: Dashboard, canActivate: [dashboardGuard] },
         ]
     },
 

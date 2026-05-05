@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DarkMode } from '../../directives/dark-mode';
+import { Auth } from '../../services/auth/services/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -8,4 +9,12 @@ import { DarkMode } from '../../directives/dark-mode';
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar { }
+export class Navbar {
+
+  constructor(private auth: Auth, private router: Router) { }
+
+  logout() {
+    this.auth.logout();
+    this.router.navigate(['/login']);
+  }
+}
